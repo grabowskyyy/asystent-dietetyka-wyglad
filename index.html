@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=device-width, initial-scale=1.0">
+    <title>MeatPoint - Kreator opisów wizyt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>🔑 Autoryzacja</h2>
+        <div class="input-group">
+            <label for="api-key">Klucz API Gemini</label>
+            <input type="password" id="api-key" placeholder="Wklej swój klucz API...">
+        </div>
+        <div class="input-group">
+            <label for="model-select">Wybierz model</label>
+            <select id="model-select">
+                <option value="gemini-3.5-flash">gemini-3.5-flash</option>
+                <option value="gemini-3.1-pro">gemini-3.1-pro</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('tab1')">🐾 Generator opisów wizyt</button>
+            <button class="tab-btn" onclick="switchTab('tab2')">🎙️ Edytor głosowy opisów wizyt</button>
+        </div>
+
+        <div id="tab1" class="tab-content active">
+            <h1>🐾 Generator opisów wizyt</h1>
+            <p class="subtitle">Wklej przygotowaną transkrypcję z rozmowy, aby automatycznie zbudować pedantycznie sformatowany dokument Word.</p>
+            
+            <div class="workspace">
+                <div class="input-zone">
+                    <label>🔊 Wklej tutaj kompletną transkrypcję z rozmowy:</label>
+                    <textarea placeholder="Tutaj wpisz lub wklej tekst transkrypcji..."></textarea>
+                </div>
+                <div class="output-zone">
+                    <h3>📋 Opis wizyty</h3>
+                    <button class="btn-gradient">🚀 Wygeneruj i uzupełnij opisy wizyty w Word</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab2" class="tab-content">
+            <h1>🎙️ Edytor głosowy opisów wizyt</h1>
+            <p class="subtitle">Zarządzaj poprawkami i wgrywaj pliki opisów w formacie .docx.</p>
+            
+            <div class="uploader-zone">
+                <p>📂 Przeciągnij i upuść plik opisu (.docx) lub kliknij, aby wybrać z dysku</p>
+                <input type="file" id="file-upload" style="display:none">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
