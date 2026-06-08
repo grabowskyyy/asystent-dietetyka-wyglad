@@ -59,8 +59,7 @@
         </div>
     </div>
 
-    <script>
-        // Funkcja przełączania zakładek
+<script>
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -68,7 +67,6 @@
             event.currentTarget.classList.add('active');
         }
 
-        // --- TUTAJ SCHOWANA JEST CAŁA LOGIKA POŁĄCZENIA Z SILNIKIEM ---
         async function uruchomGenerowanie() {
             const apiKey = document.getElementById('api-key').value;
             const model = document.getElementById('model-select').value;
@@ -80,12 +78,11 @@
                 return;
             }
 
-            // Zmień status przycisku na ładowanie
-            button.innerText = "⏳ Analiza kliniczna Gemini...";
+            button.innerText = "⏳ Generowanie dokumentu Word...";
             button.style.opacity = "0.7";
             button.disabled = true;
 
-            // 🚨 WAŻNE: TUTAJ WKLEJ SWÓJ ADRES URL Z RENDERA (Pamiętaj o /generuj na końcu)
+            // 🚨 TUAJ WPISZ SWÓJ DOKŁADNY LINK Z RENDERA
             const URL_SILNIKA = "https://asystent-dietetyka-silnik.onrender.com/generuj";
 
             try {
@@ -99,34 +96,32 @@
                     })
                 });
 
-                const data = await response.json();
-
-                if (data.status === "success") {
-                    // Tworzymy plik tekstowy z wynikiem i symulujemy kliknięcie pobierania
-                    const blob = new Blob([data.text], { type: "text/markdown;charset=utf-8" });
+                if (response.ok) {
+                    // Odbieramy plik jako dane binarne (blob), a nie zwykły tekst
+                    const blob = await response.blob();
+                    
                     const link = document.createElement("a");
                     link.href = URL.createObjectURL(blob);
-                    link.download = "Opis_Wizyty_MeatPoint.md";
+                    link.download = "Opis_Wizyty_MeatPoint.docx"; // Pobieramy czysty plik Word!
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
 
-                    alert("🎉 Opis został pomyślnie wygenerowany i pobrany!");
+                    alert("🎉 Dokument Word (.docx) został pomyślnie pobrany!");
                 } else {
-                    alert("🚨 Błąd silnika: " + data.detail);
+                    const errData = await response.json();
+                    alert("🚨 Błąd silnika: " + errData.detail);
                 }
             } catch (error) {
-                alert("🚨 Nie udało się połączyć z silnikiem. Upewnij się, że serwer Render nie zasnął!");
+                alert("🚨 Brak połączenia z serwerem. Poczekaj około minuty, aż silnik Render się wybudzi i spróbuj ponownie!");
                 console.error(error);
             } finally {
-                // Przywróć pierwotny stan przycisku
                 button.innerText = "🚀 Wygeneruj i uzupełnij opisy wizyty w Word";
                 button.style.opacity = "1";
                 button.disabled = false;
             }
         }
 
-        // Podpinamy funkcję pod kliknięcie w przycisk
         document.querySelector('.btn-gradient').addEventListener('click', uruchomGenerowanie);
     </script>
 </body>
