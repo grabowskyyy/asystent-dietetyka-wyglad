@@ -1,0 +1,194 @@
+/* RESET I BAZA ELEMENTÓW */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #F9F7F2; /* Twój kremowy kolor premium */
+    color: #1E293B;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* LEWY PANEL BOCZNY (AUTORYZACJA) */
+.sidebar {
+    width: 300px;
+    background-color: #F3F0E7; /* Czyste, delikatnie ciemniejsze tło panelu */
+    border-right: 1px solid #CBD5E1;
+    padding: 40px 24px;
+}
+
+.sidebar h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #475569;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #CBD5E1;
+    border-radius: 12px; /* Eleganckie, miękkie zaokrąglenia */
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: #1E293B;
+    background-color: #FFFFFF;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus, .input-group select:focus {
+    border-color: #4D6C70; /* Podświetlenie kolorem marki */
+}
+
+/* GŁÓWNY PANEL PO PRAWEJ STRONIE */
+.main-content {
+    flex: 1;
+    padding: 40px;
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    color: #64748B;
+    margin-bottom: 32px;
+}
+
+/* ZAKŁADKI GÓRNE */
+.tabs {
+    display: flex;
+    gap: 16px;
+    border-bottom: 2px solid #E2E8F0;
+    margin-bottom: 32px;
+}
+
+.tab-btn {
+    padding: 10px 4px;
+    background: none;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #64748B;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.tab-btn.active {
+    color: #4D6C70;
+    font-weight: 600;
+    border-bottom-color: #4D6C70; /* Aktywna zakładka w kolorze marki */
+}
+
+/* UKRYWANIE I POKAZYWANIE ZAKŁADEK */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* UKŁAD PRZESTRZENI ROBOCZEJ (Dwie kolumny) */
+.workspace {
+    display: flex;
+    gap: 32px;
+}
+
+.input-zone {
+    flex: 1;
+}
+
+.input-zone label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+textarea {
+    width: 100%;
+    height: 450px;
+    padding: 16px;
+    border: 2px solid #CBD5E1;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    resize: none;
+    outline: none;
+}
+
+textarea:focus {
+    border-color: #4D6C70;
+}
+
+/* PRAWA STRONA - WYNIK I PRZYCISK GRADIENTOWY */
+.output-zone {
+    width: 400px;
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 250px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+/* EKSPERCKI GRADIENT MATOWY MEATPOINT */
+.btn-gradient {
+    background: linear-gradient(135deg, #4D6C70 0%, #354B4E 100%);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(77, 108, 112, 0.25);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-gradient:hover {
+    box-shadow: 0 8px 16px rgba(77, 108, 112, 0.35);
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+}
+
+/* MODUŁ UPLOADERA (ZAKŁADKA 2) */
+.uploader-zone {
+    background-color: #FFFFFF;
+    border: 2px dashed #4D6C70;
+    border-radius: 12px;
+    padding: 60px;
+    text-align: center;
+    color: #475569;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.uploader-zone:hover {
+    background-color: #F1F5F9;
+}
